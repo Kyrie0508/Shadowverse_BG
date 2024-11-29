@@ -11,11 +11,13 @@ using UnityEngine;
 public class Item {
 
     public string name;
-
+    
+    public int cost;
+    
     public int attack;
 
     public int health;
-
+    
     public Sprite sprite;
     
 }

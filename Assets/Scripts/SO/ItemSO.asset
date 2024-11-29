@@ -13,19 +13,23 @@ MonoBehaviour:
   m_Name: ItemSO
   m_EditorClassIdentifier: 
   items:
-  - name: 
-    attack: 0
-    health: 0
-    sprite: {fileID: 0}
-  - name: 
-    attack: 0
-    health: 0
-    sprite: {fileID: 0}
-  - name: 
-    attack: 0
-    health: 0
-    sprite: {fileID: 0}
-  - name: 
-    attack: 0
-    health: 0
-    sprite: {fileID: 0}
+  - name: "\uAE30\uB974\uB124\uB9AC\uC81C"
+    cost: 6
+    attack: 2
+    health: 2
+    sprite: {fileID: 3126265887312679435, guid: fdfea309f1bd3a842b59cf985729badd, type: 3}
+  - name: "\uC544\uC774\uC2DC\uB80C\uB4DC\uB9C1"
+    cost: 7
+    attack: 6
+    health: 6
+    sprite: {fileID: -2713808420979312524, guid: ea7180b8e2a6c0348a9697730901706d, type: 3}
+  - name: "\uC0C8\uC2F9 \uC870\uC9C1\uC6D0"
+    cost: 1
+    attack: 1
+    health: 1
+    sprite: {fileID: -4830286962769524186, guid: f9da988f4ff00b14686c2058d01abb9e, type: 3}
+  - name: "\uB9C8\uAC00\uCE58\uC694"
+    cost: 2
+    attack: 2
+    health: 2
+    sprite: {fileID: 6776938296771404500, guid: 78ba92f97dd4b3046b203cc4b6d90cb4, type: 3}
