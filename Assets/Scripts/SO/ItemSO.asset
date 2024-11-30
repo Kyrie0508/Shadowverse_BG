@@ -22,7 +22,7 @@ MonoBehaviour:
   - name: "\uD63C\uB3C8\uC758 \uC9C0\uBC30\uC790 \uC544\uC774\uC2DC\uB80C\uB4DC\uB9C1"
     attack: 6
     health: 6
-    sprite: {fileID: -8641577633945343170, guid: 5d3253f9d50774c429830500d1768dfb, type: 3}
+    sprite: {fileID: 2199015091612326254, guid: 66a5dcde8ff3e104f875f9f27259ae2a, type: 3}
     cost: 5
     num: 6
   - name: "\uC0C8\uC2F9 \uC870\uC9C1\uC6D0"

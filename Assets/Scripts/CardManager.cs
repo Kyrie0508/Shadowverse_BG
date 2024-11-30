@@ -27,7 +27,7 @@ public class CardManager : MonoBehaviour {
     }
  
     void SetupItemBuffer() {
-        itemBuffer = new List<Item>();
+        itemBuffer = new List<Item>(100);
         for(int i = 0; i < itemSO.items.Length; i++) { // item 배열에 담겨있는 10개의 카드
             Item item = itemSO.items[i]; // 10개의 카드를 가져온다.
             for(int j = 0; j < item.num; j++) { // 각각의 카드만큼의 퍼센트 만큼 반복시킨다
@@ -79,6 +79,7 @@ public class CardManager : MonoBehaviour {
     void CardAlignment(bool isMine)
     {
         List<PRS> originCardPRSs = new List<PRS>();
+        originCardPRSs = RoundingAlignment(myCardLeft, myCardRight, Mycards.Count, 0.5f, Vector3.one);
         var targetCards = isMine ? Mycards : Othercards;
         for (int i = 0; i < targetCards.Count; i++)
         {
@@ -87,5 +88,38 @@ public class CardManager : MonoBehaviour {
             targetCard.MoveTransform(targetCard.originPRS, true, 0.7f);
         }
     }
+
+    List<PRS> RoundingAlignment(Transform leftTr, Transform rightTr, int objCount, float height, Vector3 scale)
+    {
+        float[] objLerps = new float[objCount];
+        List<PRS> results = new List<PRS>(objCount);
+
+        switch (objCount)
+        {
+            case 1: objLerps = new float[] { 0.5f }; break;
+            case 2: objLerps = new float[] { 0.27f, 0.27f }; break;
+            case 3: objLerps = new float[] { 0.1f, 0.5f, 0.9f }; break;
+            default:
+                float interval = 1f / (objCount - 1);
+                for (int i = 0; i < objCount; i++)
+                    objLerps[i] = interval * i;
+                break;
+        }
+
+        for (int i = 0; i < objCount; i++)
+        {
+            var targetPos = Vector3.Lerp(leftTr.position, rightTr.position, objLerps[i]);
+            var targetRot = Quaternion.identity;
+            if (objCount >= 4)
+            {
+                float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
+                curve = height >= 0 ? curve : -curve;
+                targetPos.y += curve;
+                //targetRot = Quaternion.Slerp(leftTr.rotation, rightTr.rotation, objLerps[i]);
+            }
+            results.Add(new PRS(targetPos, targetRot, scale));
+        }
+        return results;
+    } 
     
 }
