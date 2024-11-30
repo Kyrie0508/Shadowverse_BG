@@ -45,15 +45,18 @@ public class CardManager : MonoBehaviour {
  
     void Start() {
         SetupItemBuffer();
+        TurnManager.onAddCard += Addcard;
+    }
+
+    void OnDestroy()
+    {
+        TurnManager.onAddCard -= Addcard;
     }
  
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.Keypad1)) { // 만약 1번 키를 누르면
-            Addcard(true); // Test를 위한 호출. 내 카드가 생성
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2)) { // 만약 2번 키를 누르면
-            Addcard(false); // Test를 위한 호출. 상대 카드가 생성
-        }
+    void Update() 
+    {
+    
+        
     }
  
     void Addcard(bool isMine) {
