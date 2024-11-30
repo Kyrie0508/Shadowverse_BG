@@ -19,7 +19,9 @@ public class Item {
     public Sprite sprite;
     
     public int cost;
-    
+
+    public int num;
+
 }
 
  
