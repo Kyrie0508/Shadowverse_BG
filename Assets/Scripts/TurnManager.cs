@@ -7,6 +7,7 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager Inst { get; private set; }
     void Awake() => Inst = this;
+
     
     [Header("Develop")]
     [SerializeField] [Tooltip("시작 턴 모드를 정합니다")] EturnMode eTurnMode;
@@ -58,9 +59,21 @@ public class TurnManager : MonoBehaviour
     IEnumerator StartTurnCo()
     {
         isLoading = true;
+        if (myTurn)
+        {
+            Debug.Log("Notification 호출");
+            GameManager.Inst.Notification("나의 턴");
+        }
+
         yield return delay07;
         onAddCard?.Invoke(myTurn);
         yield return delay07;
         isLoading = false;
+    }
+
+    public void EndTurn()
+    {
+        myTurn = !myTurn;
+        StartCoroutine(StartTurnCo());
     }
 }
