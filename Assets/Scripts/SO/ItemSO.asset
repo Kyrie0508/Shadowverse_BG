@@ -13,23 +13,53 @@ MonoBehaviour:
   m_Name: ItemSO
   m_EditorClassIdentifier: 
   items:
-  - name: "\uAC08\uC99D\uACFC \uACB0\uD54D \uAE30\uB974\uB124\uB9AC\uC81C"
+  - name: "\uB8E8\uB124\uCF54"
     attack: 2
-    health: 2
-    sprite: {fileID: -4350894028958832749, guid: 39d018f18ffffb4489b08d69289df3fd, type: 3}
-    percent: 4
-  - name: "\uD63C\uB3C8\uC758 \uC9C0\uBC30\uC790 \uC544\uC774\uC2DC\uB80C\uB4DC\uB9C1"
-    attack: 7
-    health: 7
-    sprite: {fileID: 4817979099148695507, guid: 5b062c0cf0e56eb47b89fb9c0220e520, type: 3}
-    percent: 6
-  - name: "\uC0C8\uC2F9 \uC870\uC9C1\uC6D0"
-    attack: 1
-    health: 1
-    sprite: {fileID: -6283961644756959433, guid: f510c129e095b434791ca49217206672, type: 3}
+    health: 5
+    sprite: {fileID: 21300000, guid: 4b16b3eaf25218843aaa18a01bf38128, type: 3}
     percent: 12
-  - name: "\uC804\uC815\uC758 \uC8C4\uC778 \uB9C8\uAC00\uCE58\uC694"
-    attack: 2
-    health: 2
-    sprite: {fileID: -6426044377584024595, guid: 24fdd43527419d84c9b6f2a4096c7e37, type: 3}
+  - name: "\uB204\uBAA8"
+    attack: 1
+    health: 7
+    sprite: {fileID: 21300000, guid: c35eee05e6de4af4c89db5dde1a953f6, type: 3}
+    percent: 10
+  - name: "\uB514\uB2C8\uC5D0"
+    attack: 4
+    health: 4
+    sprite: {fileID: 21300000, guid: 5c6911705ba52af4fb7f56b0007994a4, type: 3}
+    percent: 10
+  - name: "\uB77C\uB2C8\uC5D8"
+    attack: 1
+    health: 4
+    sprite: {fileID: 21300000, guid: 6b7fe22487aa38a489a467fb192b55c4, type: 3}
+    percent: 15
+  - name: "\uB8E8\uB370\uB098"
+    attack: 1
+    health: 3
+    sprite: {fileID: 21300000, guid: 4f1baa0a4e21a9646be696ea2364600b, type: 3}
+    percent: 15
+  - name: "\uB9AC\uCF54"
+    attack: 3
+    health: 4
+    sprite: {fileID: 21300000, guid: 3da4c65d49953564fa56303e22f9d707, type: 3}
     percent: 8
+  - name: "\uCCB4\uB9AC"
+    attack: 4
+    health: 5
+    sprite: {fileID: 21300000, guid: af1414f2fea185c4e8663d68988c7006, type: 3}
+    percent: 10
+  - name: "\uCF08\uD2B8"
+    attack: 3
+    health: 4
+    sprite: {fileID: 21300000, guid: cd04a846ad942f547bf46cf7ac919b4a, type: 3}
+    percent: 8
+  - name: "\uD504\uB9AC\uB098"
+    attack: 3
+    health: 4
+    sprite: {fileID: 21300000, guid: eab16039e203fca43964d618183a93ab, type: 3}
+    percent: 8
+  - name: "\uD0C0\uC774\uAC70"
+    attack: 4
+    health: 8
+    sprite: {fileID: 21300000, guid: 437b06b0772460c43b0c528f81fbcaba, type: 3}
+    percent: 4

@@ -10,15 +10,15 @@ public class TurnManager : MonoBehaviour
 	void Awake() => Inst = this;
 
 	[Header("Develop")]
-	[SerializeField] [Tooltip("ì‹œì‘ í„´ ëª¨ë“œë¥¼ ì •í•©ë‹ˆë‹¤")] ETurnMode eTurnMode;
-	[SerializeField] [Tooltip("ì¹´ë“œ ë°°ë¶„ì´ ë§¤ìš° ë¹¨ë¼ì§‘ë‹ˆë‹¤")] bool fastMode;
-	[SerializeField] [Tooltip("ì‹œì‘ ì¹´ë“œ ê°¯ìˆ˜ë¥¼ ì •í•©ë‹ˆë‹¤")] int startCardCount;
+	[SerializeField] [Tooltip("½ÃÀÛ ÅÏ ¸ğµå¸¦ Á¤ÇÕ´Ï´Ù")] ETurnMode eTurnMode;
+	[SerializeField] [Tooltip("Ä«µå ¹èºĞÀÌ ¸Å¿ì »¡¶óÁı´Ï´Ù")] bool fastMode;
+	[SerializeField] [Tooltip("½ÃÀÛ Ä«µå °³¼ö¸¦ Á¤ÇÕ´Ï´Ù")] int startCardCount;
 
 	[Header("Properties")]
-	public bool isLoading; 
+	public bool isLoading; // °ÔÀÓ ³¡³ª¸é isLoadingÀ» true·Î ÇÏ¸é Ä«µå¿Í ¿£Æ¼Æ¼ Å¬¸¯¹æÁö
 	public bool myTurn;
 
-	enum ETurnMode { Purcahse, My, Other }
+	enum ETurnMode { Random, My, Other }
 	WaitForSeconds delay05 = new WaitForSeconds(0.5f);
 	WaitForSeconds delay07 = new WaitForSeconds(0.7f);
 
@@ -33,8 +33,8 @@ public class TurnManager : MonoBehaviour
 
 		switch (eTurnMode)
 		{
-			case ETurnMode.Purcahse:
-				myTurn = true;
+			case ETurnMode.Random:
+				myTurn = Random.Range(0, 2) == 0;
 				break;
 			case ETurnMode.My:
 				myTurn = true;
@@ -64,7 +64,8 @@ public class TurnManager : MonoBehaviour
 	{
 		isLoading = true;
 		if (myTurn)
-			GameManager.Inst.Notification("ë‚˜ì˜ í„´");
+			GameManager.Inst.Notification("³ªÀÇ ÅÏ");
+
 		yield return delay07;
 		OnAddCard?.Invoke(myTurn);
 		yield return delay07;

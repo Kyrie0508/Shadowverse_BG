@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Ä¡Æ®, UI, ï¿½ï¿½Å·, ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½
+// Ä¡Æ®, UI, ·©Å·, °ÔÀÓ¿À¹ö
 public class GameManager : MonoBehaviour
 {
     public static GameManager Inst { get; private set; }
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         yield return delay2;
 
         TurnManager.Inst.isLoading = true;
-        resultPanel.Show(isMyWin ? "ìŠ¹ë¦¬" : "íŒ¨ë°°");
+        resultPanel.Show(isMyWin ? "½Â¸®" : "ÆÐ¹è");
         cameraEffect.SetGrayScale(true);
     }
 }
