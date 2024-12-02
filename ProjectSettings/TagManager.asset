@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 3
+  serializedVersion: 2
   tags: []
   layers:
   - Default
@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - MyCardArea
   - 
   - 
   - 
@@ -42,10 +42,8 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Entity
-    uniqueID: 1778230491
+    uniqueID: 3106296947
     locked: 0
   - name: Card
-    uniqueID: 1381814371
+    uniqueID: 4177558097
     locked: 0
-  m_RenderingLayers:
-  - Default
