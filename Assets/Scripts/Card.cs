@@ -19,25 +19,15 @@ public class Card : MonoBehaviour
     public PRS originPRS;
 
 
-    public void Setup(Item item, bool isFront)
+    public void Setup(Item item, bool isMine)
     {
         this.item = item;
-        this.isFront = isFront;
+        
+        character.sprite = this.item.sprite;
+        nameTMP.text = this.item.name;
+        attackTMP.text = this.item.attack.ToString();
+        healthTMP.text = this.item.health.ToString();
 
-        if (this.isFront)
-        {
-            character.sprite = this.item.sprite;
-            nameTMP.text = this.item.name;
-            attackTMP.text = this.item.attack.ToString();
-            healthTMP.text = this.item.health.ToString();
-        }
-        else
-        {
-            card.sprite = cardBack;
-            nameTMP.text = "";
-            attackTMP.text = "";
-            healthTMP.text = "";
-        }
     }
 
     void OnMouseOver()
@@ -54,8 +44,11 @@ public class Card : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (isFront)
-            CardManager.Inst.CardMouseDown();
+        CardManager.Inst.CardMouseDown();
+        if (PurchaseCardManager.Inst.TryPurchaseCard(this))
+        {
+            Debug.Log($"카드 구매 완료: {item.name}");
+        }
     }
 
     void OnMouseUp()

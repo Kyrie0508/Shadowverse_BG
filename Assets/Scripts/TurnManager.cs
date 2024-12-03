@@ -6,76 +6,76 @@ using Random = UnityEngine.Random;
 
 public class TurnManager : MonoBehaviour
 {
-	public static TurnManager Inst { get; private set; }
-	void Awake() => Inst = this;
+    public static TurnManager Inst { get; private set; }
+    void Awake() => Inst = this;
 
-	[Header("Develop")]
-	[SerializeField] [Tooltip("½ÃÀÛ ÅÏ ¸ğµå¸¦ Á¤ÇÕ´Ï´Ù")] ETurnMode eTurnMode;
-	[SerializeField] [Tooltip("Ä«µå ¹èºĞÀÌ ¸Å¿ì »¡¶óÁı´Ï´Ù")] bool fastMode;
-	[SerializeField] [Tooltip("½ÃÀÛ Ä«µå °³¼ö¸¦ Á¤ÇÕ´Ï´Ù")] int startCardCount;
+    [Header("Develop")]
+    [SerializeField] [Tooltip("ì‹œì‘ í„´ ëª¨ë“œë¥¼ ì •í•©ë‹ˆë‹¤")] ETurnMode eTurnMode;
+    [SerializeField] [Tooltip("ì¹´ë“œ ë°°ë¶„ì´ ë§¤ìš° ë¹¨ë¼ì§‘ë‹ˆë‹¤")] bool fastMode;
+    [SerializeField] [Tooltip("ì‹œì‘ ì¹´ë“œ ê°œìˆ˜ë¥¼ ì •í•©ë‹ˆë‹¤")] int startCardCount;
 
-	[Header("Properties")]
-	public bool isLoading; // °ÔÀÓ ³¡³ª¸é isLoadingÀ» true·Î ÇÏ¸é Ä«µå¿Í ¿£Æ¼Æ¼ Å¬¸¯¹æÁö
-	public bool myTurn;
+    [Header("Properties")]
+    public bool isLoading; // ê²Œì„ ëë‚˜ë©´ isLoadingì„ trueë¡œ í•˜ë©´ ì¹´ë“œì™€ ì—”í‹°í‹° í´ë¦­ë°©ì§€
+    public bool myTurn;
 
-	enum ETurnMode { Random, My, Other }
-	WaitForSeconds delay05 = new WaitForSeconds(0.5f);
-	WaitForSeconds delay07 = new WaitForSeconds(0.7f);
+    enum ETurnMode { Random, My, Other }
+    WaitForSeconds delay05 = new WaitForSeconds(0.5f);
+    WaitForSeconds delay07 = new WaitForSeconds(0.7f);
 
-	public static Action<bool> OnAddCard;
-	public static event Action<bool> OnTurnStarted;
+    public static Action<bool> OnAddCard;
+    public static event Action<bool> OnTurnStarted;
 
 
-	void GameSetup()
-	{
-		if (fastMode)
-			delay05 = new WaitForSeconds(0.05f);
+    void GameSetup()
+    {
+        if (fastMode)
+            delay05 = new WaitForSeconds(0.05f);
 
-		switch (eTurnMode)
-		{
-			case ETurnMode.Random:
-				myTurn = Random.Range(0, 2) == 0;
-				break;
-			case ETurnMode.My:
-				myTurn = true;
-				break;
-			case ETurnMode.Other:
-				myTurn = false;
-				break;
-		}
-	}
+        switch (eTurnMode)
+        {
+            case ETurnMode.Random:
+                myTurn = Random.Range(0, 2) == 0;
+                break;
+            case ETurnMode.My:
+                myTurn = true;
+                break;
+            case ETurnMode.Other:
+                myTurn = false;
+                break;
+        }
+    }
 
-	public IEnumerator StartGameCo()
-	{
-		GameSetup();
-		isLoading = true;
+    public IEnumerator StartGameCo()
+    {
+        GameSetup();
+        isLoading = true;
 
-		for (int i = 0; i < startCardCount; i++)
-		{
-			yield return delay05;
-			OnAddCard?.Invoke(false);
-			yield return delay05;
-			OnAddCard?.Invoke(true);
-		}
-		StartCoroutine(StartTurnCo());
-	}
+        for (int i = 0; i < startCardCount; i++)
+        {
+            yield return delay05;
+            OnAddCard?.Invoke(false);
+            yield return delay05;
+            OnAddCard?.Invoke(true);
+        }
+        StartCoroutine(StartTurnCo());
+    }
 
-	IEnumerator StartTurnCo()
-	{
-		isLoading = true;
-		if (myTurn)
-			GameManager.Inst.Notification("³ªÀÇ ÅÏ");
+    IEnumerator StartTurnCo()
+    {
+        isLoading = true;
+        if (myTurn)
+            GameManager.Inst.Notification("ë‚˜ì˜ í„´");
 
-		yield return delay07;
-		OnAddCard?.Invoke(myTurn);
-		yield return delay07;
-		isLoading = false;
-		OnTurnStarted?.Invoke(myTurn);
-	}
+        yield return delay07;
+        OnAddCard?.Invoke(myTurn);
+        yield return delay07;
+        isLoading = false;
+        OnTurnStarted?.Invoke(myTurn);
+    }
 
-	public void EndTurn()
-	{
-		myTurn = !myTurn;
-		StartCoroutine(StartTurnCo());
-	}
+    public void EndTurn()
+    {
+        myTurn = !myTurn;
+        StartCoroutine(StartTurnCo());
+    }
 }

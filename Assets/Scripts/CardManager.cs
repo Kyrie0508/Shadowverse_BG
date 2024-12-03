@@ -81,13 +81,22 @@ public class CardManager : MonoBehaviour
 	void Update()
 	{
         if (isMyCardDrag)
-            CardDrag();
+        {
+            if (selectCard == null)
+            {
+                Debug.LogWarning("selectCard is null in Update!");
+            }
+            else
+            {
+                CardDrag();
+            }
+        }
 
         DetectCardArea();
         SetECardState();
     }
 
-	void AddCard(bool isMine)
+	public void AddCard(bool isMine)
     {
         var cardObject = Instantiate(cardPrefab, cardSpawnPoint.position, Utils.QI);
         var card = cardObject.GetComponent<Card>();
