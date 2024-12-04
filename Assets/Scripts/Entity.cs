@@ -12,17 +12,21 @@ public class Entity : MonoBehaviour
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text attackTMP;
     [SerializeField] TMP_Text healthTMP;
+    [SerializeField] public TMP_Text goldTMP;
     [SerializeField] GameObject sleepParticle;
 
     public int attack;
     public int health;
+    public int cost;
+    public int gold;
     public bool isMine;
     public bool isDie;
     public bool isBossOrEmpty;
     public bool attackable;
     public Vector3 originPos;
     int liveCount;
-
+    public static Entity Inst { get; private set; }
+    void Awake() => Inst = this;
 
     void Start()
     {
@@ -49,7 +53,7 @@ public class Entity : MonoBehaviour
     {
         attack = item.attack;
         health = item.health;
-
+        
         this.item = item;
         character.sprite = this.item.sprite;
         nameTMP.text = this.item.name;
@@ -87,6 +91,7 @@ public class Entity : MonoBehaviour
         }
         return false;
     }
+    
 
     public void MoveTransform(Vector3 pos, bool useDotween, float dotweenTime = 0)
     {

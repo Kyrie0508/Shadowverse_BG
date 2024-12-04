@@ -11,8 +11,8 @@ public class Card : MonoBehaviour
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text attackTMP;
     [SerializeField] TMP_Text healthTMP;
+    [SerializeField] TMP_Text costTMP;
     [SerializeField] Sprite cardFront;
-    [SerializeField] Sprite cardBack;
 
     public Item item;
     bool isFront;
@@ -27,34 +27,28 @@ public class Card : MonoBehaviour
         nameTMP.text = this.item.name;
         attackTMP.text = this.item.attack.ToString();
         healthTMP.text = this.item.health.ToString();
+        costTMP.text = this.item.cost.ToString();
 
     }
 
     void OnMouseOver()
     {
-        if (isFront)
-            CardManager.Inst.CardMouseOver(this);
+        CardManager.Inst.CardMouseOver(this);
     }
 
     void OnMouseExit()
     {
-        if (isFront)
-            CardManager.Inst.CardMouseExit(this);
+        CardManager.Inst.CardMouseExit(this);
     }
 
     void OnMouseDown()
     {
         CardManager.Inst.CardMouseDown();
-        if (PurchaseCardManager.Inst.TryPurchaseCard(this))
-        {
-            Debug.Log($"카드 구매 완료: {item.name}");
-        }
     }
 
     void OnMouseUp()
     {
-        if (isFront)
-            CardManager.Inst.CardMouseUp();
+        CardManager.Inst.CardMouseUp();
     }
 
     public void MoveTransform(PRS prs, bool useDotween, float dotweenTime = 0)
@@ -71,5 +65,20 @@ public class Card : MonoBehaviour
             transform.rotation = prs.rot;
             transform.localScale = prs.scale;
         }
+    }
+    public int GetAttackPower()
+    {
+        return this.item.attack;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        this.item.health -= damage;
+        Debug.Log($"{this.item.name} took {damage} damage. Remaining health: {this.item.health}");
+    }
+
+    public bool IsDead()
+    {
+        return this.item.health <= 0;
     }
 }

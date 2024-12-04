@@ -18,18 +18,22 @@ MonoBehaviour:
     health: 2
     sprite: {fileID: -4350894028958832749, guid: 39d018f18ffffb4489b08d69289df3fd, type: 3}
     percent: 4
+    cost: 6
   - name: "\uD63C\uB3C8\uC758 \uC9C0\uBC30\uC790 \uC544\uC774\uC2DC\uB80C\uB4DC\uB9C1"
     attack: 7
     health: 7
     sprite: {fileID: 4817979099148695507, guid: 5b062c0cf0e56eb47b89fb9c0220e520, type: 3}
     percent: 6
+    cost: 5
   - name: "\uC0C8\uC2F9 \uC870\uC9C1\uC6D0"
     attack: 1
     health: 1
     sprite: {fileID: -6283961644756959433, guid: f510c129e095b434791ca49217206672, type: 3}
     percent: 10
+    cost: 1
   - name: "\uC804\uC815\uC758 \uC8C4\uC778 \uB9C8\uAC00\uCE58\uC694"
     attack: 2
     health: 2
     sprite: {fileID: -6426044377584024595, guid: 24fdd43527419d84c9b6f2a4096c7e37, type: 3}
     percent: 8
+    cost: 2

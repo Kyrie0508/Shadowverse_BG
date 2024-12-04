@@ -17,8 +17,9 @@ public class TurnManager : MonoBehaviour
     [Header("Properties")]
     public bool isLoading; // 게임 끝나면 isLoading을 true로 하면 카드와 엔티티 클릭방지
     public bool myTurn;
+    public bool battlePhase;
 
-    enum ETurnMode { Random, My, Other }
+    enum ETurnMode { Battle, My, Other }
     WaitForSeconds delay05 = new WaitForSeconds(0.5f);
     WaitForSeconds delay07 = new WaitForSeconds(0.7f);
 
@@ -33,8 +34,8 @@ public class TurnManager : MonoBehaviour
 
         switch (eTurnMode)
         {
-            case ETurnMode.Random:
-                myTurn = Random.Range(0, 2) == 0;
+            case ETurnMode.Battle:
+                battlePhase = true;
                 break;
             case ETurnMode.My:
                 myTurn = true;
@@ -49,11 +50,9 @@ public class TurnManager : MonoBehaviour
     {
         GameSetup();
         isLoading = true;
-
+        
         for (int i = 0; i < startCardCount; i++)
         {
-            yield return delay05;
-            OnAddCard?.Invoke(false);
             yield return delay05;
             OnAddCard?.Invoke(true);
         }
@@ -65,9 +64,8 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         if (myTurn)
             GameManager.Inst.Notification("나의 턴");
-
-        yield return delay07;
-        OnAddCard?.Invoke(myTurn);
+        if (battlePhase)
+            GameManager.Inst.Notification("전투");
         yield return delay07;
         isLoading = false;
         OnTurnStarted?.Invoke(myTurn);
@@ -75,7 +73,7 @@ public class TurnManager : MonoBehaviour
 
     public void EndTurn()
     {
-        myTurn = !myTurn;
+        myTurn = battlePhase;
         StartCoroutine(StartTurnCo());
     }
 }

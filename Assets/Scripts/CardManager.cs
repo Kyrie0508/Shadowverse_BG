@@ -12,8 +12,8 @@ public class CardManager : MonoBehaviour
 
     [SerializeField] ItemSO itemSO;
     [SerializeField] GameObject cardPrefab;
-    [SerializeField] List<Card> myCards;
-    [SerializeField] List<Card> otherCards;
+    [SerializeField] public List<Card> myCards;
+    [SerializeField] public List<Card> otherCards;
     [SerializeField] Transform cardSpawnPoint;
     [SerializeField] Transform otherCardSpawnPoint;
     [SerializeField] Transform myCardLeft;
@@ -81,22 +81,13 @@ public class CardManager : MonoBehaviour
 	void Update()
 	{
         if (isMyCardDrag)
-        {
-            if (selectCard == null)
-            {
-                Debug.LogWarning("selectCard is null in Update!");
-            }
-            else
-            {
-                CardDrag();
-            }
-        }
+            CardDrag();
 
         DetectCardArea();
         SetECardState();
     }
 
-	public void AddCard(bool isMine)
+	void AddCard(bool isMine)
     {
         var cardObject = Instantiate(cardPrefab, cardSpawnPoint.position, Utils.QI);
         var card = cardObject.GetComponent<Card>();
@@ -277,14 +268,15 @@ public class CardManager : MonoBehaviour
         if (TurnManager.Inst.isLoading)
             eCardState = ECardState.Nothing;
 
-        else if (!TurnManager.Inst.myTurn || myPutCount == 1 || EntityManager.Inst.IsFullMyEntities)
+        else if (!TurnManager.Inst.myTurn || EntityManager.Inst.IsFullMyEntities)
             eCardState = ECardState.CanMouseOver;
 
-        else if (TurnManager.Inst.myTurn && myPutCount == 0)
+        else if (TurnManager.Inst.myTurn)
             eCardState = ECardState.CanMouseDrag;
     }
 
-
     #endregion
-
 }
+
+
+
